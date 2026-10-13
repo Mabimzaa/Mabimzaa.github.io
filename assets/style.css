@@ -1,0 +1,422 @@
+/* ==========================================================
+   Mabimzaa — site perso OSINT & cybersécurité
+   Palette reprise de l'avatar (bleu nuit + bleu électrique)
+   + un jaune "surligneur" pour ce qui a été trouvé.
+   ========================================================== */
+
+:root {
+  --ink: #0d1726;          /* fond principal, bleu nuit */
+  --ink-2: #13223a;        /* panneaux */
+  --line: #24385a;         /* traits, bordures */
+  --text: #e4ebf4;         /* texte principal */
+  --muted: #8fa1ba;        /* texte secondaire */
+  --signal: #2e9bff;       /* bleu électrique (œil du corbeau) */
+  --found: #f2c14e;        /* surligneur : ce qui a été trouvé */
+  --redact: #04080f;       /* bandes de caviardage */
+
+  --font-display: "Chakra Petch", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+
+  --wrap: 68rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--signal); text-underline-offset: 0.2em; }
+a:hover { color: var(--text); }
+
+:focus-visible {
+  outline: 2px solid var(--found);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0.5rem;
+  background: var(--found);
+  color: var(--ink);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+.skip:focus { left: 0.5rem; }
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+}
+
+h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: 0.75rem; }
+h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+
+p { margin: 0 0 1rem; max-width: 62ch; }
+
+/* ---------- En-tête ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+.brand img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+.nav a { color: var(--muted); text-decoration: none; }
+.nav a:hover { color: var(--text); }
+
+.lang {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.lang a,
+.lang span {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.lang span { background: var(--signal); color: var(--ink); }
+.lang a { color: var(--muted); }
+
+@media (max-width: 720px) {
+  .nav .nav-link { display: none; }
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
+}
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+}
+
+.hero .lead {
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--signal);
+}
+.btn-primary { background: var(--signal); color: var(--ink); }
+.btn-primary:hover { background: var(--text); border-color: var(--text); color: var(--ink); }
+.btn-ghost { color: var(--text); }
+.btn-ghost:hover { background: var(--ink-2); color: var(--text); }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+}
+
+/* ---------- Le dossier caviardé (élément signature) ---------- */
+
+.dossier {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.dossier-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-bottom: 0.9rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px dashed var(--line);
+}
+.dossier-head strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+.dossier-head small { color: var(--muted); }
+
+.dossier ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dossier li {
+  display: grid;
+  grid-template-columns: 0.75fr 1.5fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.dossier li:last-child { border-bottom: 0; }
+.dossier .k { color: var(--muted); }
+
+/* La bande noire se lève au survol, au focus ou au toucher */
+.redact {
+  all: unset;
+  cursor: pointer;
+  position: relative;
+  justify-self: start;
+  border-radius: 2px;
+  color: var(--found);
+  line-height: 1.4;
+}
+.redact::after {
+  content: "";
+  position: absolute;
+  inset: -0.1em -0.25em;
+  background: var(--redact);
+  border-radius: 2px;
+  transform-origin: right;
+  transition: transform 0.35s ease;
+}
+.redact:hover::after,
+.redact:focus-visible::after,
+.redact.is-open::after {
+  transform: scaleX(0);
+}
+.redact:focus-visible { outline: 2px solid var(--found); outline-offset: 4px; }
+
+.dossier-note {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+@media (max-width: 520px) {
+  .dossier li { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding: clamp(3rem, 7vw, 5rem) 0;
+  border-top: 1px solid var(--line);
+}
+.section-intro { color: var(--muted); margin-bottom: 2.5rem; }
+
+/* Services : l'audit OSINT en vedette, les deux autres à côté */
+.services {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.25rem;
+}
+.service {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.service ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+.service li { margin-bottom: 0.3rem; }
+.service p { color: var(--muted); }
+
+.service-main {
+  grid-row: span 2;
+  background: var(--ink-2);
+  border-color: var(--signal);
+}
+.service-main h3 { font-size: 1.6rem; }
+.service-main .tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--found);
+  padding: 0.15rem 0.55rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 860px) {
+  .services { grid-template-columns: 1fr; }
+  .service-main { grid-row: auto; }
+}
+
+/* Méthode : une vraie séquence, donc numérotée */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  counter-reset: step;
+}
+.steps li {
+  counter-increment: step;
+  border-top: 2px solid var(--signal);
+  padding-top: 1rem;
+}
+.steps li::before {
+  content: counter(step);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--signal);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.steps p { color: var(--muted); font-size: 0.95rem; }
+
+@media (max-width: 860px) {
+  .steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .steps { grid-template-columns: 1fr; }
+}
+
+/* Parcours */
+.track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.track h3 { color: var(--text); }
+.track p { color: var(--muted); font-size: 0.95rem; }
+
+@media (max-width: 860px) {
+  .track { grid-template-columns: 1fr; }
+}
+
+/* Contact */
+.contact {
+  background: var(--ink-2);
+}
+.contact .wrap {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.contact-list li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.contact-list span { color: var(--muted); }
+
+@media (max-width: 860px) {
+  .contact .wrap { grid-template-columns: 1fr; }
+}
+
+/* ---------- Pied de page ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.site-footer a { color: var(--muted); }
+.site-footer a:hover { color: var(--text); }
+
+/* ---------- Pages texte (mentions légales) ---------- */
+
+.legal {
+  padding: clamp(3rem, 6vw, 4.5rem) 0;
+}
+.legal h1 { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 2rem; }
+.legal h2 { font-size: 1.3rem; margin: 2.25rem 0 0.6rem; }
+.legal p, .legal li { color: var(--muted); }
+.legal .todo {
+  color: var(--found);
+  font-weight: 600;
+}
+
+/* ---------- Accessibilité ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .redact::after { transition: none; }
+}
