@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mabimzaa · OSINT and security audits</title>
-  <meta name="description" content="OSINT specialist and cybersecurity consultant: digital footprint audits, security audits and support for small businesses and independent professionals.">
+  <meta name="description" content="OSINT specialist and cybersecurity consultant: digital footprint audits, security testing and awareness training for small businesses and independent professionals.">
 
   <link rel="alternate" hreflang="fr" href="https://mabimzaa.github.io/">
   <link rel="alternate" hreflang="en" href="https://mabimzaa.github.io/en/">
@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
+  <div class="progress" aria-hidden="true"></div>
   <a class="skip" href="#content">Skip to content</a>
 
   <header class="site-header">
@@ -34,7 +35,8 @@
       </a>
       <nav class="nav" aria-label="Main navigation">
         <a class="nav-link" href="#services">Expertise</a>
-        <a class="nav-link" href="#method">Method</a>
+        <a class="nav-link" href="#attack">Attack</a>
+        <a class="nav-link" href="#test">Self-check</a>
         <a class="nav-link" href="#contact">Contact</a>
         <div class="lang" aria-label="Language">
           <a href="../" hreflang="fr" lang="fr">FR</a>
@@ -48,13 +50,15 @@
 
     <!-- HERO -->
     <section class="hero">
+      <canvas class="graph" aria-hidden="true" data-labels="@handle|email|domain|photo|LinkedIn|DNS|breach|IP|EXIF"></canvas>
       <div class="wrap">
         <div>
-          <h1>What the internet knows about your company, I find it before anyone else does.</h1>
+          <p class="status"><i aria-hidden="true"></i>Open to conversations and collaborations</p>
+          <h1 data-scramble>What the internet knows about your company, I find it before anyone else does.</h1>
           <p class="lead">I'm Mabimzaa, an OSINT specialist and cybersecurity consultant. I find the public information an attacker would use against you, then help you remove it or protect yourself from it.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="#contact">Get in touch</a>
-            <a class="btn btn-ghost" href="#services">What I do</a>
+            <a class="btn btn-primary" href="#test">Check my exposure</a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
           </div>
         </div>
 
@@ -90,14 +94,22 @@
       </div>
     </section>
 
+    <!-- TECHNIQUES -->
+    <div class="ticker" aria-label="OSINT techniques">
+      <div class="ticker-track">
+        <span>Metadata analysis</span><span>Image geolocation</span><span>Data breach lookups</span><span>Subdomain mapping</span><span>Username pivoting</span><span>Social media analysis</span><span>DNS history</span><span>Web archives</span><span>Reverse image search</span>
+        <span aria-hidden="true">Metadata analysis</span><span aria-hidden="true">Image geolocation</span><span aria-hidden="true">Data breach lookups</span><span aria-hidden="true">Subdomain mapping</span><span aria-hidden="true">Username pivoting</span><span aria-hidden="true">Social media analysis</span><span aria-hidden="true">DNS history</span><span aria-hidden="true">Web archives</span><span aria-hidden="true">Reverse image search</span>
+      </div>
+    </div>
+
     <!-- SERVICES -->
     <section class="section" id="services">
       <div class="wrap">
-        <h2>What I do</h2>
-        <p class="section-intro">My three areas of work, from open-source investigation to awareness training.</p>
+        <h2 class="reveal">What I do</h2>
+        <p class="section-intro reveal">My three areas of work, from open-source investigation to awareness training.</p>
 
         <div class="services">
-          <article class="service service-main">
+          <article class="service service-main glow reveal">
             <span class="tag">My specialty</span>
             <h3>Digital footprint audit</h3>
             <p>I run the investigation an attacker would carry out before targeting you, using open sources only. You get a clear report: what is exposed, what it enables, and how to fix it.</p>
@@ -110,12 +122,12 @@
             </ul>
           </article>
 
-          <article class="service">
+          <article class="service glow reveal">
             <h3>Security audit</h3>
             <p>Testing of your website, access points and configuration, within a defined scope authorised in writing.</p>
           </article>
 
-          <article class="service">
+          <article class="service glow reveal">
             <h3>Support and awareness training</h3>
             <p>Putting good practices in place, following up on fixes, and awareness sessions for your teams (phishing, passwords, social media).</p>
           </article>
@@ -123,26 +135,111 @@
       </div>
     </section>
 
-    <!-- METHOD -->
+    <!-- ANATOMIE D'UNE ATTAQUE -->
+    <section class="section" id="attack">
+      <div class="wrap">
+        <h2 class="reveal">Anatomy of an attack</h2>
+        <p class="section-intro reveal">Most attacks don't start with hacking. They start with an internet search. Here is a common scenario, step by step.</p>
+
+        <ol class="attack">
+          <li>
+            <div>
+              <h3>Reconnaissance</h3>
+              <p>The attacker lists your staff on LinkedIn and rebuilds your org chart in under an hour.</p>
+            </div>
+            <div class="fix"><strong>What an audit would have done</strong><p>Spot what is exposed and help teams control what they publish.</p></div>
+          </li>
+          <li>
+            <div>
+              <h3>Guessing email addresses</h3>
+              <p>A single public address is enough to guess the firstname.lastname@ format for the whole team.</p>
+            </div>
+            <div class="fix"><strong>What an audit would have done</strong><p>Identify guessable addresses and check anti-spoofing protections (SPF, DMARC).</p></div>
+          </li>
+          <li>
+            <div>
+              <h3>Breach lookup</h3>
+              <p>They find an employee's old password in a public data breach.</p>
+            </div>
+            <div class="fix"><strong>What an audit would have done</strong><p>Detect the affected accounts and enforce unique passwords with two-factor authentication.</p></div>
+          </li>
+          <li>
+            <div>
+              <h3>Spear phishing</h3>
+              <p>They send a convincing email that mentions a real project and a real manager's name.</p>
+            </div>
+            <div class="fix"><strong>What an audit would have done</strong><p>Train teams to recognise this kind of message, with realistic examples.</p></div>
+          </li>
+          <li>
+            <div>
+              <h3>Compromise</h3>
+              <p>One click, one password typed in: the mailbox or network is open.</p>
+            </div>
+            <div class="fix"><strong>What an audit would have done</strong><p>Break the chain at step one, long before it gets here.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- TEST D'EXPOSITION -->
+    <section class="section" id="test">
+      <div class="wrap">
+        <h2 class="reveal">Check your exposure</h2>
+        <p class="section-intro reveal">Tick what applies to your organisation. The result is only indicative and nothing is sent anywhere: it all runs in your browser.</p>
+
+        <div class="exposure" data-exposure data-levels='[
+          {"max":20,"label":"Low exposure","color":"#3ccf91","advice":"Good foundations. Regular checks are enough to keep it that way."},
+          {"max":50,"label":"Moderate exposure","color":"#f2c14e","advice":"A few entry points exist. They are often easy to fix."},
+          {"max":75,"label":"High exposure","color":"#ff8a3d","advice":"An attacker would have enough to build a convincing scenario against you."},
+          {"max":100,"label":"Critical exposure","color":"#ff5a5f","advice":"Several steps of the attack described above are already within reach."}
+        ]'>
+          <fieldset class="checks">
+            <legend class="sr-only">Exposure factors</legend>
+            <label class="check"><input type="checkbox" value="2"><span>Team email addresses follow a guessable format (firstname.lastname@…)</span></label>
+            <label class="check"><input type="checkbox" value="2"><span>Your staff list their role at your company on LinkedIn</span></label>
+            <label class="check"><input type="checkbox" value="3"><span>Some passwords are reused across several services</span></label>
+            <label class="check"><input type="checkbox" value="3"><span>You have never checked whether your addresses appear in a breach</span></label>
+            <label class="check"><input type="checkbox" value="3"><span>Two-factor authentication isn't enabled everywhere</span></label>
+            <label class="check"><input type="checkbox" value="2"><span>Photos of your premises, screens or badges are online</span></label>
+            <label class="check"><input type="checkbox" value="2"><span>Test sites or pages are still online</span></label>
+            <label class="check"><input type="checkbox" value="1"><span>Your website lists managers' names and direct emails</span></label>
+          </fieldset>
+
+          <div class="meter" aria-live="polite">
+            <svg viewBox="0 0 220 130" aria-hidden="true">
+              <path class="track-arc" d="M20 115 A90 90 0 0 1 200 115" fill="none" stroke-width="16" stroke-linecap="round"/>
+              <path class="val-arc" d="M20 115 A90 90 0 0 1 200 115" fill="none" stroke="#3ccf91" stroke-width="16" stroke-linecap="round"/>
+            </svg>
+            <div class="meter-score">0</div>
+            <p class="meter-level">Low exposure</p>
+            <p class="meter-advice">Tick the items that apply to you.</p>
+            <a class="btn btn-primary" href="#contact">Talk it through</a>
+            <small>This check is no substitute for a real audit.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHODE -->
     <section class="section" id="method">
       <div class="wrap">
-        <h2>How an engagement works</h2>
-        <p class="section-intro">Nothing starts without your written agreement on the scope.</p>
+        <h2 class="reveal">How an engagement works</h2>
+        <p class="section-intro reveal">Nothing starts without your written agreement on the scope.</p>
 
         <ol class="steps">
-          <li>
+          <li class="reveal">
             <h3>Scoping</h3>
             <p>We define the scope and goals together, then sign an authorisation to proceed.</p>
           </li>
-          <li>
+          <li class="reveal">
             <h3>Collection</h3>
             <p>Open-source research or technical testing, depending on the engagement, without disrupting your business.</p>
           </li>
-          <li>
+          <li class="reveal">
             <h3>Analysis</h3>
             <p>Every finding is verified and ranked by its real risk to your company.</p>
           </li>
-          <li>
+          <li class="reveal">
             <h3>Debrief</h3>
             <p>A report a non-specialist can read, walked through with you, with the priority fixes.</p>
           </li>
@@ -150,25 +247,71 @@
       </div>
     </section>
 
-    <!-- BACKGROUND -->
+    <!-- PARCOURS -->
     <section class="section" id="background">
       <div class="wrap">
-        <h2>Background</h2>
-        <p class="section-intro">Skills kept sharp through competition and continuous training.</p>
+        <h2 class="reveal">Background</h2>
+        <p class="section-intro reveal">Skills kept sharp through competition and continuous training.</p>
 
         <div class="track">
-          <div>
+          <div class="reveal">
             <h3>CTFs with Corvus Mind</h3>
             <p>Member of <a href="https://shsh-commits.github.io/corvusmind/">Corvus Mind</a>, an OSINT-focused team. Competed in events such as Opération Culot (Bpifrance) and Perce le front numérique (Paris Military Governor × AEGE).</p>
           </div>
-          <div>
+          <div class="reveal">
             <h3>Technical training</h3>
             <p>Steady progress on Hack The Box and TryHackMe: reconnaissance, web exploitation, privilege escalation.</p>
           </div>
-          <div>
+          <div class="reveal">
             <h3>Ethics</h3>
             <p>No work without written authorisation. Collected data stays confidential and is deleted at the end of the engagement.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEFI -->
+    <section class="section" id="challenge">
+      <div class="wrap">
+        <div class="challenge reveal">
+          <div>
+            <h3>Case 001: The raven's nest</h3>
+            <p>Want to see how I work? A real little OSINT investigation is waiting on my GitHub profile: one photo, one deleted note, one name to find. Crack it and your username joins the hall of fame.</p>
+          </div>
+          <div class="challenge-cta">
+            <span class="stamp">UNSOLVED</span><br>
+            <a class="btn btn-primary" href="https://github.com/Mabimzaa">Open the case</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <h2 class="reveal">Frequently asked questions</h2>
+        <p class="section-intro reveal">What people ask me most before we start.</p>
+        <div class="faq">
+          <details class="reveal">
+            <summary>Is OSINT legal?</summary>
+            <p>Yes, as long as it sticks to publicly available information and respects data protection law (GDPR). I never access a system without authorisation and never bypass any protection.</p>
+          </details>
+          <details class="reveal">
+            <summary>What are you likely to find about me?</summary>
+            <p>It depends on your exposure. Most often: email addresses, accounts in old breaches, information about your teams and part of your technical infrastructure.</p>
+          </details>
+          <details class="reveal">
+            <summary>How long does an audit take?</summary>
+            <p>It depends on the scope. We define it together at the start, and you know the timeline before work begins.</p>
+          </details>
+          <details class="reveal">
+            <summary>What happens to the data collected?</summary>
+            <p>It is used only for the report, kept confidential and deleted at the end of the engagement.</p>
+          </details>
+          <details class="reveal">
+            <summary>Do you work in French too?</summary>
+            <p>Yes. Conversations and reports can be in English or French.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -182,7 +325,15 @@
           <p>I work in English and French.</p>
         </div>
         <ul class="contact-list">
-          <li><span>Email</span> <a href="mailto:mabimzaa@proton.me">mabimzaa@proton.me</a></li>
+          <li>
+            <span>Email</span>
+            <span class="mail" data-mail data-u="YWF6bWliYW0=" data-d="cHJvdG9uLm1l">
+              <span class="mail-value is-hidden">hidden from bots</span>
+              <button class="mini-btn" type="button" data-reveal hidden>Reveal</button>
+              <button class="mini-btn" type="button" data-copy data-label="Copy" data-done="Copied" hidden>Copy</button>
+              <noscript>Enable JavaScript to show the address, or reach me through GitHub.</noscript>
+            </span>
+          </li>
           <li><span>GitHub</span> <a href="https://github.com/Mabimzaa">Mabimzaa</a></li>
         </ul>
       </div>
