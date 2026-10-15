@@ -486,6 +486,8 @@ p { margin: 0 0 1rem; max-width: 62ch; }
 
 /* Bandeau défilant des techniques */
 .ticker {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: var(--ink-2);
@@ -747,7 +749,8 @@ p { margin: 0 0 1rem; max-width: 62ch; }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .ticker-track { animation: none; flex-wrap: wrap; width: auto; }
+  .ticker-track { animation: none; }
+  .ticker span[aria-hidden="true"] { display: none; }
   .status i { animation: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .service, .service:hover { transform: none; transition: none; }
