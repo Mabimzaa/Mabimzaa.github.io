@@ -551,6 +551,7 @@ p { margin: 0 0 1rem; max-width: 62ch; }
   bottom: .4rem;
   width: 2px;
   background: var(--line);
+  z-index: 0;
 }
 .attack::after {
   background: linear-gradient(var(--signal), #ff5a5f);
@@ -580,6 +581,9 @@ p { margin: 0 0 1rem; max-width: 62ch; }
   font-family: var(--font-display);
   font-size: .8rem;
   font-weight: 600;
+  z-index: 1;
+  line-height: 1;
+  padding-top: .1em;
   background: var(--ink-2);
   border: 2px solid var(--line);
   color: var(--muted);
