@@ -749,8 +749,7 @@ p { margin: 0 0 1rem; max-width: 62ch; }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .ticker-track { animation: none; }
-  .ticker span[aria-hidden="true"] { display: none; }
+  .ticker-track { animation-duration: 120s; }
   .status i { animation: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .service, .service:hover { transform: none; transition: none; }
